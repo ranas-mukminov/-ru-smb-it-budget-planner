@@ -1,0 +1,273 @@
+$defs:
+  BackupSpec:
+    properties:
+      daily_full:
+        title: Daily Full
+        type: boolean
+      retention_days:
+        title: Retention Days
+        type: integer
+    required:
+    - daily_full
+    - retention_days
+    title: BackupSpec
+    type: object
+  CloudUsage:
+    properties:
+      egress_gb:
+        title: Egress Gb
+        type: integer
+      provider_profile:
+        title: Provider Profile
+        type: string
+      ram_gb:
+        title: Ram Gb
+        type: integer
+      region:
+        title: Region
+        type: string
+      storage_gb:
+        title: Storage Gb
+        type: integer
+      vcpus:
+        title: Vcpus
+        type: integer
+    required:
+    - provider_profile
+    - vcpus
+    - ram_gb
+    - storage_gb
+    - region
+    - egress_gb
+    title: CloudUsage
+    type: object
+  ColocationUnit:
+    properties:
+      bandwidth_mbps:
+        title: Bandwidth Mbps
+        type: integer
+      dc_region:
+        title: Dc Region
+        type: string
+      power_watts:
+        title: Power Watts
+        type: integer
+      units:
+        title: Units
+        type: integer
+    required:
+    - dc_region
+    - units
+    - power_watts
+    - bandwidth_mbps
+    title: ColocationUnit
+    type: object
+  CompanyProfile:
+    properties:
+      has_kii:
+        description: Critical Information Infrastructure (187-FZ)
+        title: Has Kii
+        type: boolean
+      has_pd:
+        description: Handles Personal Data (152-FZ)
+        title: Has Pd
+        type: boolean
+      has_pd_special:
+        description: Handles Special Category Personal Data
+        title: Has Pd Special
+        type: boolean
+      industry:
+        title: Industry
+        type: string
+      name:
+        title: Name
+        type: string
+      region:
+        title: Region
+        type: string
+      size_class:
+        title: Size Class
+        type: string
+    required:
+    - name
+    - industry
+    - size_class
+    - region
+    - has_pd
+    - has_pd_special
+    - has_kii
+    title: CompanyProfile
+    type: object
+  CurrentDeployment:
+    properties:
+      cloud_usage:
+        default: []
+        items:
+          $ref: '#/$defs/CloudUsage'
+        title: Cloud Usage
+        type: array
+      colocation_units:
+        default: []
+        items:
+          $ref: '#/$defs/ColocationUnit'
+        title: Colocation Units
+        type: array
+      on_prem_servers:
+        default: []
+        items:
+          $ref: '#/$defs/OnPremServer'
+        title: On Prem Servers
+        type: array
+    title: CurrentDeployment
+    type: object
+  License:
+    properties:
+      cost_rub_per_year:
+        title: Cost Rub Per Year
+        type: number
+      metric:
+        enum:
+        - user
+        - socket
+        - vm
+        title: Metric
+        type: string
+      product:
+        title: Product
+        type: string
+      seats:
+        title: Seats
+        type: integer
+    required:
+    - product
+    - metric
+    - seats
+    - cost_rub_per_year
+    title: License
+    type: object
+  OnPremServer:
+    properties:
+      age_years:
+        title: Age Years
+        type: integer
+      capex_rub:
+        title: Capex Rub
+        type: number
+      name:
+        title: Name
+        type: string
+      power_watts:
+        title: Power Watts
+        type: integer
+      ram_gb:
+        title: Ram Gb
+        type: integer
+      region:
+        title: Region
+        type: string
+      storage_gb:
+        title: Storage Gb
+        type: integer
+      vcpus:
+        title: Vcpus
+        type: integer
+    required:
+    - name
+    - vcpus
+    - ram_gb
+    - storage_gb
+    - power_watts
+    - region
+    - age_years
+    - capex_rub
+    title: OnPremServer
+    type: object
+  Workload:
+    properties:
+      availability:
+        enum:
+        - '99.5'
+        - '99.9'
+        - '99.95'
+        - '99.99'
+        title: Availability
+        type: string
+      backup:
+        anyOf:
+        - $ref: '#/$defs/BackupSpec'
+        - type: 'null'
+        default: null
+      contains_pd:
+        title: Contains Pd
+        type: boolean
+      contains_pd_special:
+        title: Contains Pd Special
+        type: boolean
+      iops_profile:
+        enum:
+        - low
+        - medium
+        - high
+        title: Iops Profile
+        type: string
+      kii_related:
+        title: Kii Related
+        type: boolean
+      name:
+        title: Name
+        type: string
+      ram_gb:
+        title: Ram Gb
+        type: integer
+      storage_gb:
+        title: Storage Gb
+        type: integer
+      type:
+        enum:
+        - web
+        - db
+        - 1c
+        - bitrix
+        - email
+        - vpn
+        - other
+        title: Type
+        type: string
+      vcpus:
+        title: Vcpus
+        type: integer
+    required:
+    - name
+    - type
+    - vcpus
+    - ram_gb
+    - storage_gb
+    - iops_profile
+    - availability
+    - contains_pd
+    - contains_pd_special
+    - kii_related
+    title: Workload
+    type: object
+properties:
+  company_profile:
+    $ref: '#/$defs/CompanyProfile'
+  current_deployment:
+    $ref: '#/$defs/CurrentDeployment'
+  licenses:
+    default: []
+    items:
+      $ref: '#/$defs/License'
+    title: Licenses
+    type: array
+  workloads:
+    items:
+      $ref: '#/$defs/Workload'
+    title: Workloads
+    type: array
+required:
+- company_profile
+- workloads
+- current_deployment
+title: InfraSpec
+type: object

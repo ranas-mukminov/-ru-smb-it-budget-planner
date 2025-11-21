@@ -1,25 +1,23 @@
 # ru-smb-it-budget-planner
 
-**IT Budget Planning and Comparison Tool for Russian SMBs.**
+**IT Budget Planning Tool for Russian SMBs.**
 
-[Русская версия (Russian Version)](README.ru.md)
+This tool helps calculate and compare IT infrastructure costs (TCO) across different deployment scenarios: On-Premise, Colocation, and Russian Clouds.
 
-This tool estimates and compares IT infrastructure costs across three scenarios:
-1. **On-Premise** (Own hardware).
-2. **Colocation**.
-3. **Russian Clouds** (Abstract profiles).
+👉 **[Читать на русском (Read in Russian)](README.ru.md)**
 
-It respects local data residency regulations (152-FZ, KII) when suggesting workload placement.
+## Features
+- **DSL-based configuration**: Describe infrastructure in simple YAML.
+- **Scenario Analysis**: Compare "As Is", "Minimal Cloud", and "Hybrid" costs.
+- **Compliance Aware**: Considers Russian data privacy (152-FZ) and critical infrastructure (187-FZ) flags.
+- **Localized Reporting**: Generates reports in Russian for business owners.
 
 ## Disclaimer
-
-> [!IMPORTANT]
-> This tool is for **estimation purposes only**. It does not constitute financial or legal advice.
+This is an estimation tool, not legal or financial advice.
 
 ## Support
-
-For professional DevOps and migration services, visit: [https://run-as-daemon.ru](https://run-as-daemon.ru)
+Powered by **[run-as-daemon.ru](https://run-as-daemon.ru)**.
+We offer IT audit, migration planning, and DevOps services.
 
 ## License
-
-Apache-2.0
+Apache-2.0. See [LICENSE](LICENSE).

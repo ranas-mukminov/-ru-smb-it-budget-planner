@@ -1,0 +1,39 @@
+company_profile:
+  name: "ООО Магазин у Дома"
+  region: "Москва"
+  industry: "retail"
+  size_class: "10-50"
+  has_pd: true
+  has_pd_special: false
+  has_kii: false
+
+workloads:
+  - name: "1c-retail"
+    type: "1c"
+    vcpus: 4
+    ram_gb: 8
+    storage_gb: 100
+    iops_profile: "medium"
+    availability: "99.5"
+    contains_pd: true
+    contains_pd_special: false
+    kii_related: false
+
+current_deployment:
+  on_prem_servers:
+    - name: "server-1"
+      vcpus: 4
+      ram_gb: 16
+      storage_gb: 500
+      power_watts: 300
+      region: "Москва"
+      age_years: 2
+      capex_rub: 150000
+  colocation_units: []
+  cloud_usage: []
+
+licenses:
+  - product: "1C"
+    metric: "user"
+    seats: 5
+    cost_rub_per_year: 60000

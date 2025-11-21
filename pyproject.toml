@@ -21,27 +21,30 @@ dependencies = [
 ]
 
 [project.scripts]
-ru-smb-planner = "src.main:cli"
+ru-smb-it-budget-planner = "ru_smb_it_budget_planner.cli:cli"
 
 [tool.setuptools.packages.find]
-where = ["."]
-include = ["src*"]
+where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = "test_*.py"
-addopts = "-v --cov=src"
+addopts = "-v --cov=ru_smb_it_budget_planner"
 
 [tool.mypy]
 python_version = "3.9"
 warn_return_any = true
 warn_unused_configs = true
 ignore_missing_imports = true
+disallow_untyped_defs = true
 
-[tool.black]
+[tool.ruff]
 line-length = 88
-target-version = ['py39']
+target-version = "py39"
 
-[tool.isort]
-profile = "black"
-line_length = 88
+[tool.ruff.lint]
+select = ["E", "F", "B", "S"]
+ignore = []
+
+[tool.bandit]
+exclude_dirs = ["tests"]

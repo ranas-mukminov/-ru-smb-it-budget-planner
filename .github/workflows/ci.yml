@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [ main ]
 
 jobs:
   test:
@@ -15,33 +15,30 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
-        
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest pytest-cov flake8 black mypy
-        pip install -e .
-        
-    - name: Lint with flake8
+        pip install -e .[dev]
+        pip install pytest pytest-cov ruff mypy bandit
+
+    - name: Run Linters (Ruff)
       run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-        
-    - name: Check formatting with black
+        ruff check src tests
+
+    - name: Run Security Checks (Bandit)
       run: |
-        black --check .
-        
-    - name: Type check with mypy
+        bandit -r src -c pyproject.toml
+
+    - name: Type Checking (MyPy)
       run: |
         mypy src
-        
-    - name: Test with pytest
+
+    - name: Run Tests
       run: |
         pytest

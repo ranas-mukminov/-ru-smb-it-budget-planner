@@ -1,0 +1,46 @@
+company_profile:
+  name: "IT Services Ltd"
+  region: "Санкт-Петербург"
+  industry: "it"
+  size_class: "50-100"
+  has_pd: true
+  has_pd_special: false
+  has_kii: false
+
+workloads:
+  - name: "internal-crm"
+    type: "web"
+    vcpus: 4
+    ram_gb: 8
+    storage_gb: 50
+    iops_profile: "low"
+    availability: "99.5"
+    contains_pd: true
+    contains_pd_special: false
+    kii_related: false
+  
+  - name: "public-api"
+    type: "web"
+    vcpus: 8
+    ram_gb: 16
+    storage_gb: 100
+    iops_profile: "high"
+    availability: "99.9"
+    contains_pd: false
+    contains_pd_special: false
+    kii_related: false
+
+current_deployment:
+  on_prem_servers:
+    - name: "legacy-srv"
+      vcpus: 12
+      ram_gb: 32
+      storage_gb: 1000
+      power_watts: 500
+      region: "Санкт-Петербург"
+      age_years: 4
+      capex_rub: 300000
+  colocation_units: []
+  cloud_usage: []
+
+licenses: []
