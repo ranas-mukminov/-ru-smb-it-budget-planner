@@ -1,0 +1,20 @@
+electricity:
+  - region: "Татарстан"
+    tariff_rub_per_kwh: 6.5
+    updated_at: "2025-01-01"
+  - region: "Москва"
+    tariff_rub_per_kwh: 7.0
+    updated_at: "2025-01-01"
+
+colocation:
+  - region: "Москва"
+    price_rub_per_u_per_month: 3000
+    included_power_watts: 300
+    included_bandwidth_mbps: 100
+
+cloud_profiles:
+  - code: "ru_cloud_gp"
+    vCPU_price_rub_per_hour: 1.5
+    ram_price_rub_per_gb_hour: 0.5
+    storage_price_rub_per_gb_month: 5.0
+    egress_price_rub_per_gb: 1.0

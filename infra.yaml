@@ -1,0 +1,59 @@
+company_profile:
+  name: "ООО Малый Бизнес"
+  region: "Татарстан"
+  industry: "retail"
+  size_class: "50-100"
+  has_pd: true
+  has_pd_special: false
+  has_kii: false
+
+workloads:
+  - name: "1C-accounting"
+    type: "1c"
+    vcpus: 4
+    ram_gb: 16
+    storage_gb: 500
+    iops_profile: "medium"
+    availability: "99.9"
+    contains_pd: true
+    contains_pd_special: false
+    kii_related: false
+    backup:
+      daily_full: true
+      retention_days: 30
+
+  - name: "public-website"
+    type: "web"
+    vcpus: 2
+    ram_gb: 4
+    storage_gb: 50
+    iops_profile: "low"
+    availability: "99.5"
+    contains_pd: false
+    contains_pd_special: false
+    kii_related: false
+
+current_deployment:
+  on_prem_servers:
+    - name: "srv-1"
+      vcpus: 8
+      ram_gb: 32
+      storage_gb: 2000
+      power_watts: 400
+      region: "Татарстан"
+      age_years: 3
+      capex_rub: 250000
+
+  colocation_units:
+    - dc_region: "Москва"
+      units: 2
+      power_watts: 600
+      bandwidth_mbps: 100
+
+  cloud_usage: []
+
+licenses:
+  - product: "1C"
+    metric: "user"
+    seats: 10
+    cost_rub_per_year: 120000
