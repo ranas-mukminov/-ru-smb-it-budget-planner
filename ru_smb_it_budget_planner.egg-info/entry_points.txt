@@ -1,0 +1,2 @@
+[console_scripts]
+ru-smb-planner = src.main:cli

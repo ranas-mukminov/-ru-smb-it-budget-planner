@@ -1,0 +1,17 @@
+electricity:
+  - region: "Moscow"
+    rub_per_kwh: 6.5
+  - region: "St. Petersburg"
+    rub_per_kwh: 5.8
+
+colocation:
+  - dc_tier: "Tier-3"
+    region: "Moscow"
+    rub_per_unit_month: 2500
+    included_power_watts: 150
+
+cloud_profiles:
+  - name: "ru_cloud_gp"
+    rub_per_vcpu_hour: 1.2
+    rub_per_gb_ram_hour: 0.4
+    rub_per_gb_storage_month: 8.0
